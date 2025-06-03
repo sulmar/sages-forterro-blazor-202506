@@ -12,7 +12,7 @@ public class AuthService(IUserRepository userRepository, IPasswordHasher<UserIde
 
         if (user != null)
         {
-            var result = passwordHasher.VerifyHashedPassword(user, user.PasswordHash, password);
+            var result = passwordHasher.VerifyHashedPassword(user, user.PasswordHash ?? string.Empty, password);
 
             if (result == PasswordVerificationResult.Success)
             {

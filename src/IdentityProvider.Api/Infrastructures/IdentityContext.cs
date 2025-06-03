@@ -4,5 +4,5 @@ namespace IdentityProvider.Api.Infrastructures;
 
 public class IdentityContext
 {
-    public IEnumerable<UserIdentity> Users { get; set; }
+    public required IEnumerable<UserIdentity> Users { get; set; }
 }

@@ -12,5 +12,5 @@ public class UserIdentity
     public DateTime Birthdate { get; set; }
     public List<string> Roles { get; set; } = new();
     public List<string> Permissions { get; set; } = [];
-    public string Department { get; set; }
+    public required string Department { get; set; }
 }

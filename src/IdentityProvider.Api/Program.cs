@@ -82,7 +82,7 @@ app.MapPost("/api/login", async (LoginRequest request, IAuthService authService,
 
     var result = await authService.AuthorizeAsync(request.Username, request.Password);
 
-    if (result.IsAuthentication)
+    if (result.IsAuthentication && result.Identity != null)
     {
         // Generate JWT (Json Web Token)
         var accessToken = tokenService.GenerateAccessToken(result.Identity);

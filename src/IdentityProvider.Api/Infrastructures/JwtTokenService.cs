@@ -9,9 +9,9 @@ namespace IdentityProvider.Api.Infrastructures;
 
 public class JwtSettings
 {
-    public string SecretKey { get; set; }
-    public string Issuer { get; set; }
-    public string Audience { get; set; }
+    public required string SecretKey { get; set; }
+    public required string Issuer { get; set; }
+    public required string Audience { get; set; }
     public int ExpiresMinutes { get; set; }
 }
 
@@ -29,11 +29,11 @@ public class JwtTokenService : ITokenService
         var claims = new Dictionary<string, object>
         {
             [JwtRegisteredClaimNames.Jti] = Guid.NewGuid().ToString(),
-            [JwtRegisteredClaimNames.Name] = userIdentity.Username,
-            [JwtRegisteredClaimNames.Email] = userIdentity.Email,
-            [JwtRegisteredClaimNames.PhoneNumber] = userIdentity.PhoneNumber,
-            [JwtRegisteredClaimNames.GivenName] = userIdentity.FirstName,
-            [JwtRegisteredClaimNames.FamilyName] = userIdentity.LastName,
+            [JwtRegisteredClaimNames.Name] = userIdentity.Username ?? string.Empty,
+            [JwtRegisteredClaimNames.Email] = userIdentity.Email ?? string.Empty,
+            [JwtRegisteredClaimNames.PhoneNumber] = userIdentity.PhoneNumber ?? string.Empty,
+            [JwtRegisteredClaimNames.GivenName] = userIdentity.FirstName ?? string.Empty,
+            [JwtRegisteredClaimNames.FamilyName] = userIdentity.LastName ?? string.Empty,
             [JwtRegisteredClaimNames.Birthdate] = userIdentity.Birthdate.ToShortDateString(),
 
             // Dodajemy role jako tablicę
