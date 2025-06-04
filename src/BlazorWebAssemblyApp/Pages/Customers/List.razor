@@ -1,0 +1,32 @@
+﻿@page "/customers"
+@using Domain.Models
+
+<h3>Customer List</h3>
+
+<p>@message</p>
+
+<ul>
+    @foreach (var customer in customers)
+    {
+        <li>@customer.Id @customer.Name @customer.Email</li>
+    }
+</ul>
+
+
+@code {
+    private string message = "Hello Customers!";
+
+    private List<Customer> customers;
+
+    protected override void OnInitialized()
+    {
+        customers = new List<Customer>
+        {
+            new Customer { Id = 1, Name = "a", Email = "a@a.pl"},
+            new Customer { Id = 2, Name = "b", Email = "b@a.pl"},
+            new Customer { Id = 3, Name = "c", Email = "c@a.pl"},
+        };
+    }
+
+
+}
