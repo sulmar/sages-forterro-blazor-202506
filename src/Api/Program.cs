@@ -20,9 +20,16 @@ builder.Services.AddSingleton<IEnumerable<Customer>>(sp =>
 
 });
 
+builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
+{
+    policy.WithOrigins("https://localhost:7291", "http://localhost:5076").WithMethods("GET").AllowAnyHeader();
+}));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
+app.UseCors();
 
 app.UseHttpsRedirection();
 

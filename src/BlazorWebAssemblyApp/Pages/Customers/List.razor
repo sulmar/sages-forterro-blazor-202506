@@ -5,28 +5,31 @@
 
 <p>@message</p>
 
-<ul>
-    @foreach (var customer in customers)
-    {
-        <li>@customer.Id @customer.Name @customer.Email</li>
-    }
-</ul>
+@if (customers is null)
+{
+    <em>Loading customers...</em>
+}
+else
+{
+    <ul>
+        @foreach (var customer in customers)
+        {
+            <li>@customer.Id @customer.Name @customer.Email</li>
+        }
+    </ul>
+}
 
 
 @code {
     private string message = "Hello Customers!";
 
-    private List<Customer> customers;
+    private List<Customer>? customers;
 
-    protected override void OnInitialized()
+    [Inject] // Atrybut pozwalający na wstrzykiwanie zależności
+    private HttpClient http { get; set; } // Property
+
+    protected override async Task OnInitializedAsync()
     {
-        customers = new List<Customer>
-        {
-            new Customer { Id = 1, Name = "a", Email = "a@a.pl"},
-            new Customer { Id = 2, Name = "b", Email = "b@a.pl"},
-            new Customer { Id = 3, Name = "c", Email = "c@a.pl"},
-        };
+        customers = await http.GetFromJsonAsync<List<Customer>>("https://localhost:7162/api/customers");
     }
-
-
 }
