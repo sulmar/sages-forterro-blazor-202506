@@ -1,8 +1,7 @@
 # 📊 Zadanie: Dashboard
 
 ## 🧩 Cel:
-Twoim zadaniem jest stworzenie wielokrotnego komponentu Blazora (InfoCard.razor), który posłuży jako element dashboardu prezentujący kluczowe dane – takie jak liczba klientów, produktów, status systemu itp.
-Celem jest przećwiczenie tworzenia komponentu wielokrotnego użytku.
+Twoim zadaniem jest stworzenie wielokrotnego komponentu Blazora (`InfoCard.razor`), który posłuży jako element dashboardu prezentujący kluczowe dane – takie jak liczba klientów, produktów, status systemu itp. Celem jest przećwiczenie tworzenia komponentu wielokrotnego użytku.
 
 ## 🖼️ Szkic: 
   ![alt text](dashboard.png)
