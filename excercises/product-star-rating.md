@@ -25,6 +25,11 @@ Twoim zadaniem jest stworzenie komponentu Blazora, który umożliwia użytkownik
 
 ---
 
+## 🧠 Rozszerzenie (dla chętnych)
+- Wysyłanie oceny poprzez API
+
+---
+
 ## ⏱️ Czas realizacji: **45 minut**
 
 W razie pytań — zapytaj prowadzącego 🙂
