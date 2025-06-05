@@ -1,13 +1,12 @@
 ﻿@page "/customers"
 @using Domain.Models
+@using BlazorWebAssemblyApp.Shared
 
 <h3>Customer List</h3>
 
-<p>@message</p>
-
 @if (customers is null)
 {
-    <em>Loading customers...</em>
+   <Placeholder Message="Loading customers..." />
 }
 else
 {

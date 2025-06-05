@@ -1,5 +1,6 @@
 ﻿@page "/products"
 @using BlazorWebAssemblyApp.Services
+@using BlazorWebAssemblyApp.Shared
 @using Domain.Models
 @inject IProductService Api
 
@@ -8,7 +9,7 @@
 
 @if (products is null)
 {
-    <em>Loading products...</em>
+    <Placeholder Message="Loading products..." />
 }
 else
 {
