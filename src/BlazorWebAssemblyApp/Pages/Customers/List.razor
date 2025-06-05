@@ -4,16 +4,15 @@
 
 <h3>Customer List</h3>
 
-@if (customers is null)
-{
-   <Placeholder Message="Loading customers..." />
-}
-else
-{
-    <ul>
-        @foreach (var customer in customers)
-        {
-            <li>@customer.Id @customer.Name @customer.Email</li>
-        }
-    </ul>
-}
+<Loader Items="@customers">
+
+    <Content>
+        <ul>
+            @foreach (var customer in customers)
+            {                
+                <li>@customer.Id @customer.Name @customer.Email</li>
+            }
+        </ul>
+    </Content>
+
+</Loader>

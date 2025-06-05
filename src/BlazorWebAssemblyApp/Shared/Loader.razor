@@ -1,0 +1,21 @@
+﻿@typeparam TItem
+@using Domain.Models
+
+@if (Items is null)
+{
+    <Placeholder />
+}
+else
+{
+   @Content
+}
+
+@code {
+
+    [Parameter]
+    public List<TItem> Items { get; set; }
+
+    [Parameter]
+    public RenderFragment Content { get; set; }
+
+}

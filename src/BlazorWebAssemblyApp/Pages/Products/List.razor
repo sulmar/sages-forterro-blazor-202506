@@ -6,21 +6,18 @@
 
 <h3>Product List</h3>
 
+<Loader Items="@products">
 
-@if (products is null)
-{
-    <Placeholder Message="Loading products..." />
-}
-else
-{
-    <ul>
-        @foreach (var product in products)
-        {
-            <li>@product.Id @product.Name @product.Description @product.Price</li>
-        }
-    </ul>
-}
+    <Content>
+        <ul>
+            @foreach (var product in products)
+            {
+                <li>@product.Id @product.Name @product.Description @product.Price</li>
+            }
+        </ul>
+    </Content>
 
+</Loader>
 
 @code {
 
