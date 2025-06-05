@@ -1,3 +1,4 @@
+using Api.Extensions;
 using Bogus;
 using Domain.Abstractions;
 using Domain.Models;
@@ -7,22 +8,11 @@ using Infrastructure.Repositories;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddSingleton<Faker<Customer>, CustomerFaker>();
+builder.Services.AddFakeEntities<Customer, CustomerFaker>(20);
 builder.Services.AddSingleton<ICustomerRepository, InMemoryCustomerRepository>();
-builder.Services.AddSingleton<IEnumerable<Customer>>(sp =>
-{
-    var faker = sp.GetRequiredService<Faker<Customer>>();
 
-    var customers = faker.Generate(20);
-
-    return customers;
-
-});
-
-builder.Services.AddSingleton<Faker<Product>, ProductFaker>();
+builder.Services.AddFakeEntities<Product, ProductFaker>(10);
 builder.Services.AddSingleton<IProductRepository, InMemoryProductRepository>();
-builder.Services.AddSingleton<IEnumerable<Product>>(sp => sp.GetRequiredService<Faker<Product>>().Generate(20));
 
 builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
 {
