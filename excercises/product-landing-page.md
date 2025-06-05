@@ -15,6 +15,7 @@ Celem zadania jest nauczenie się budowy komponentów w Blazorze oraz przekazywa
 - Opis `Description`
 - Cena `Price`
 3. **Wyświetl zdjęcie produktu** na podstawie pola `ImageUrl`
+4. Dodaj do strony `Pages/Products/List.razor` przycisk „View” z linkiem prowadzącym do strony `Pages/Products/View.razor`
 
 
 ## 🧠 Rozszerzenie (dla chętnych):

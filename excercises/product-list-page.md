@@ -20,5 +20,4 @@ Celem zadania jest opanowanie pobierania danych z serwisu oraz ich prezentacji w
 ---
 
 ## 🧠 Rozszerzenie (dla chętnych)
-- Dodaj kolumnę „Szczegóły” z linkiem prowadzącym do strony `Products/View.razor`
 - Styluj tabelę (np. dodaj nagłówki, ramki, marginesy)
