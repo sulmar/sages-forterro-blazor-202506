@@ -2,6 +2,6 @@
 
 namespace BlazorWebAssemblyApp.Services;
 
-public interface ICustomerService : IEntityService<Customer>
+public interface IProductService : IEntityService<Product>
 {
 }

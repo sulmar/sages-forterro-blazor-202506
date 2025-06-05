@@ -1,6 +1,7 @@
 ﻿@page "/products"
+@using BlazorWebAssemblyApp.Services
 @using Domain.Models
-@inject HttpClient http
+@inject IProductService Api
 
 <h3>Product List</h3>
 
@@ -26,7 +27,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        products = await http.GetFromJsonAsync<List<Product>>("https://localhost:7162/api/products");
+        products = await Api.GetAll();
     }
 
 
