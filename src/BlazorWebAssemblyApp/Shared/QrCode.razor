@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
+@inject IWebAssemblyHostEnvironment Env
+
+<img src="@address" />
+
+@code {
+
+    [Parameter]
+    public string Value { get; set; }
+
+    private string address;
+
+
+    protected override async Task OnInitializedAsync()
+    {        
+        address = $"https://api.qrserver.com/v1/create-qr-code/?data={Env.BaseAddress}{@Value}&size=200x200";
+    }
+
+}
