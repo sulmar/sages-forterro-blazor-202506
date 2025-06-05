@@ -1,0 +1,39 @@
+﻿@page "/customers/view/{id:int}"
+@using BlazorWebAssemblyApp.Services
+@using Domain.Models
+@using BlazorWebAssemblyApp.Shared
+@inject ICustomerService Api
+
+<h3>View</h3>
+
+<Loader IsLoading=@isLoading>
+
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="https://placehold.co/200x300" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">@customer.Name</h5>
+            <p class="card-text">@customer.Email</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+
+</Loader>
+
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private Customer? customer;
+
+    private bool isLoading => customer is null;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        customer = await Api.Get(Id);
+    }
+
+
+}

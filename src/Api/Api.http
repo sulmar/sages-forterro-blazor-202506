@@ -5,8 +5,17 @@ Accept: application/json
 
 ###
 
+GET {{Api_HostAddress}}/api/customers/1
+Accept: application/json
+
+###
 
 GET {{Api_HostAddress}}/api/products/
+Accept: application/json
+
+###
+
+GET {{Api_HostAddress}}/api/products/1
 Accept: application/json
 
 ###
