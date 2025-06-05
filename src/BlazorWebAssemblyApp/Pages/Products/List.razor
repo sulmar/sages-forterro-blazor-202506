@@ -18,12 +18,12 @@
                 <th>Image</th>
             </HeaderTemplate>
 
-            <RowTemplate>
-                <td>@context.Id </td>
-                <td>@context.Name</td>
-                <td>@context.Description</td>
-                <td>@context.Price</td>
-                <td><img src="@context.ImageUrl" /></td>
+            <RowTemplate Context="product">
+                <td>@product.Id </td>
+                <td>@product.Name</td>
+                <td>@product.Description</td>
+                <td>@product.Price</td>
+                <td><img src="@product.ImageUrl" /></td>
             </RowTemplate>
         </Table>
 
