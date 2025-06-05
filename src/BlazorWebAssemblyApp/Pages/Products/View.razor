@@ -1,0 +1,35 @@
+﻿@page "/products/view/{id:int}"
+@inject IProductService Api
+
+
+<h3>View</h3>
+
+<Loader IsLoading=@isLoading>
+
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="@product.ImageUrl" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">@product.Name</h5>
+            <p class="card-text">@product.Description</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+
+</Loader>
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private Product? product;
+
+    private bool isLoading => product is null;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        product = await Api.Get(Id);
+    }
+
+}
