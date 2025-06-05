@@ -9,12 +9,38 @@
 <Loader IsLoading=@isLoading>
 
     <Content>
-        <ul>
-            @foreach (var product in products)
-            {
-                <li>@product.Id @product.Name @product.Description @product.Price</li>
-            }
-        </ul>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var product in products)
+                {
+                    <tr>
+                        <td>@product.Id </td>
+                        <td>@product.Name</td>
+                        <td>@product.Description</td>
+                        <td>@product.Price</td>
+                        <td><img src="@product.ImageUrl"/></td>
+                    </tr>
+                }
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td>Count: @products.Count</td>
+                </tr>
+            </tfoot>
+
+
+        </table>
     </Content>
 
 </Loader>
