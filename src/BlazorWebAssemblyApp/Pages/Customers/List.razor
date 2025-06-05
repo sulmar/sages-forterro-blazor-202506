@@ -4,8 +4,8 @@
 
 <div>
     <label for="searchText">Search Text:</label>
-    <input type="text" id="searchText" @bind=@searchText />
-    <button @onclick=@Search class="btn btn-primary">Search</button>
+    <input type="text" id="searchText" @bind=@searchText @bind:after=@SearchAsync />
+    <button @onclick=@SearchAsync class="btn btn-primary">Search</button>
 </div>
 
 <Loader IsLoading=@isLoading>
@@ -30,8 +30,12 @@
 @code {
     private string searchText = "a";
 
-    private void Search()
+    private async Task SearchAsync()
     {
-        Console.WriteLine(searchText);
+        Console.WriteLine($"Searching... {searchText}");
+
+        await Task.Delay(TimeSpan.FromSeconds(3));
+
+        Console.WriteLine($"Found {searchText}");        
     }
 }
