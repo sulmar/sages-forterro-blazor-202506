@@ -10,5 +10,5 @@ public interface ICustomerService
 
 public class ApiCustomerService(HttpClient http) : ICustomerService
 {
-    public Task<List<Customer>?> GetAll() => http.GetFromJsonAsync<List<Customer>>("/api/customers");
+    public Task<List<Customer>?> GetAll() => http.GetFromJsonAsync<List<Customer>>("api/customers");
 }
