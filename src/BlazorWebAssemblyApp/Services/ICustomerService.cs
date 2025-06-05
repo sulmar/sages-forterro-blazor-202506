@@ -8,17 +8,7 @@ public interface ICustomerService
     Task<List<Customer>?> GetAll();
 }
 
-public class ApiCustomerService : ICustomerService
+public class ApiCustomerService(HttpClient http) : ICustomerService
 {
-    private readonly HttpClient _http;
-
-    public ApiCustomerService(HttpClient http)
-    {
-        _http = http;
-    }
-
-    public Task<List<Customer>?> GetAll()
-    {
-        return _http.GetFromJsonAsync<List<Customer>>("/api/customers");
-    }
+    public Task<List<Customer>?> GetAll() => http.GetFromJsonAsync<List<Customer>>("/api/customers");
 }
