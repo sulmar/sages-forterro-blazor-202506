@@ -2,6 +2,12 @@
 
 <h3>Customer List</h3>
 
+<div>
+    <label for="searchText">Search Text:</label>
+    <input type="text" id="searchText" @bind-value=@searchText />
+    <button onclick=@Search>Search</button>
+</div>
+
 <Loader IsLoading=@isLoading>
     <Table Items="@customers">
         <HeaderTemplate>
@@ -20,3 +26,12 @@
     </Table>
 
 </Loader>
+
+@code {
+    private string searchText = "a";
+
+    private void Search()
+    {
+        Console.WriteLine(searchText);
+    }
+}
