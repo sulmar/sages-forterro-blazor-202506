@@ -30,7 +30,7 @@ public class InMemoryEntityRepository<T> : IEntityRepository<T>
 
     public async Task<IEnumerable<T>> GetAllAsync()
     {
-        await Task.Delay(5000); // Simulate a delay
+        await Task.Delay(2000); // Simulate a delay
 
         return _entities.Values.AsEnumerable();
     }
