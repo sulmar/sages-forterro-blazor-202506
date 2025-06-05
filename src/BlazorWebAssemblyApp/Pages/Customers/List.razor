@@ -3,9 +3,10 @@
 <h3>Customer List</h3>
 
 <div>
-    <label for="searchText">Search Text:</label>
-    <input type="text" id="searchText" @bind=@searchText @bind:after=@SearchAsync />
+    <label for="searchInputText">Search Text:</label>
+    <input type="text" id="searchInputText" @ref=@searchInputTextRef @bind=@searchText @bind:event="oninput" @bind:after=@SearchAsync />
     <button @onclick=@SearchAsync class="btn btn-primary">Search</button>
+    
 </div>
 
 <Loader IsLoading=@isLoading>
@@ -30,6 +31,8 @@
 @code {
     private string searchText = "a";
 
+    private ElementReference searchInputTextRef;
+
     private async Task SearchAsync()
     {
         Console.WriteLine($"Searching... {searchText}");
@@ -37,5 +40,14 @@
         await Task.Delay(TimeSpan.FromSeconds(3));
 
         Console.WriteLine($"Found {searchText}");        
+
     }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await searchInputTextRef.FocusAsync();
+    }
+
+   
+
 }
