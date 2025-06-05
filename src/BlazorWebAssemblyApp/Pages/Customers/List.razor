@@ -4,8 +4,8 @@
 
 <div>
     <label for="searchText">Search Text:</label>
-    <input type="text" id="searchText" @bind-value=@searchText />
-    <button onclick=@Search>Search</button>
+    <input type="text" id="searchText" @bind=@searchText />
+    <button @onclick=@Search class="btn btn-primary">Search</button>
 </div>
 
 <Loader IsLoading=@isLoading>
