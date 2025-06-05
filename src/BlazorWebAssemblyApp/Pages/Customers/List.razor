@@ -7,34 +7,20 @@
 <Loader IsLoading=@isLoading>
 
     <Content>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
+        <Table Items="@customers">
+            <HeaderTemplate>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+            </HeaderTemplate>
 
-            <tbody>
-                @foreach (var customer in customers)
-                {
-                    <tr>
-                        <td>@customer.Id </td>
-                        <td>@customer.Name</td>
-                        <td>@customer.Email</td>
-                    </tr>
-                }
-            </tbody>
-
-            <tfoot>
-                <tr>
-                    <td>Count: @customers.Count</td>
-                </tr>
-            </tfoot>
-
-
-        </table>
+            <RowTemplate>
+                <td>@context.Id </td>
+                <td>@context.Name</td>
+                <td>@context.Email</td>
+            </RowTemplate>
+        </Table>
+       
     </Content>
 
 </Loader>
