@@ -10,6 +10,8 @@ public partial class List(ICustomerService Api) // Primary Constructor
 
     private List<Customer>? customers;
 
+    private bool isLoading => customers is null;
+
     // [Inject] // Atrybut pozwalający na wstrzykiwanie zależności
     // private readonly ICustomerService Api { get; set; } // Property
 

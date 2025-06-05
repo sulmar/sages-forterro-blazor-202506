@@ -1,7 +1,6 @@
-﻿@typeparam TItem
-@using Domain.Models
+﻿@using Domain.Models
 
-@if (Items is null)
+@if (IsLoading)
 {
     <Placeholder />
 }
@@ -13,7 +12,7 @@ else
 @code {
 
     [Parameter]
-    public List<TItem> Items { get; set; }
+    public bool IsLoading { get; set; } 
 
     [Parameter]
     public RenderFragment Content { get; set; }
