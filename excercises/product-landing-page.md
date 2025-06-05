@@ -42,6 +42,12 @@ https://api.qrserver.com/v1/create-qr-code/?data=...&size=...
 (np. `https://localhost:5001/products/abc123`)
 
 - Komponent `QrCode.razor` może generować `<img>` z odpowiednim adresem URL API jako źródłem
+- Bieżacy adres aplikacji WebAssembly możesz pobrać z `IWebAssemblyHostEnvironment `
+```razor 
+@inject IWebAssemblyHostEnvironment Env
+
+@Env.BaseAddress
+```
 
 ---
 
