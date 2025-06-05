@@ -4,9 +4,9 @@
 
 <div>
     <label for="searchInputText">Search Text:</label>
-    <input type="text" id="searchInputText" @ref=@searchInputTextRef @bind=@searchText @bind:event="oninput" @bind:after=@SearchAsync />
-    <button @onclick=@SearchAsync class="btn btn-primary">Search</button>
-    
+    <input type="text" id="searchInputText" @ref=@searchInputTextRef @bind=@searchText @bind:event="oninput" @bind:after=@SearchHandler />
+    <button @onclick=@SearchHandler class="btn btn-primary">Search</button>
+
 </div>
 
 <Loader IsLoading=@isLoading>
@@ -33,13 +33,38 @@
 
     private ElementReference searchInputTextRef;
 
-    private async Task SearchAsync()
+    private CancellationTokenSource cts;
+
+    private async Task SearchHandler()
     {
-        Console.WriteLine($"Searching... {searchText}");
+        cts?.Cancel();
 
-        await Task.Delay(TimeSpan.FromSeconds(3));
+        cts = new CancellationTokenSource();
 
-        Console.WriteLine($"Found {searchText}");        
+        var token = cts.Token;
+        
+        try
+        {
+            await Task.Delay(500, token);
+
+            await SearchAsync(token);
+        }
+
+        catch (TaskCanceledException) { }
+    }
+
+
+
+    private async Task SearchAsync(CancellationToken token)
+    {
+        if (!token.IsCancellationRequested)
+        {
+            Console.WriteLine($"Searching... {searchText}");
+
+            await Task.Delay(TimeSpan.FromSeconds(3), token);
+
+            Console.WriteLine($"Found {searchText}");
+        }
 
     }
 
@@ -48,6 +73,6 @@
         await searchInputTextRef.FocusAsync();
     }
 
-   
+
 
 }
