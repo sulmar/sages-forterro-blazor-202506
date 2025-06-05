@@ -6,7 +6,7 @@
 }
 else
 {
-   @Content
+    @ChildContent
 }
 
 @code {
@@ -15,6 +15,6 @@ else
     public bool IsLoading { get; set; } 
 
     [Parameter]
-    public RenderFragment Content { get; set; }
+    public RenderFragment ChildContent { get; set; }
 
 }
