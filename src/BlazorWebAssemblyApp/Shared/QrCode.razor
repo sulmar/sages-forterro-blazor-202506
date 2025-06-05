@@ -1,19 +1,29 @@
 ﻿@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
 @inject IWebAssemblyHostEnvironment Env
 
-<img src="@address" />
+@if (!string.IsNullOrEmpty(QrImageUrl))
+{
+    <img src="@QrImageUrl" alt="QR Code" />
+}
 
 @code {
+    [Parameter]
+    public string Value { get; set; } = string.Empty;
 
     [Parameter]
-    public string Value { get; set; }
+    public int Width { get; set; } = 200;
 
-    private string address;
+    [Parameter]
+    public int Height { get; set; } = 200;
 
+    private string QrImageUrl = string.Empty;
 
-    protected override async Task OnInitializedAsync()
-    {        
-        address = $"https://api.qrserver.com/v1/create-qr-code/?data={Env.BaseAddress}{@Value}&size=200x200";
+    protected override void OnParametersSet()
+    {
+        if (!string.IsNullOrWhiteSpace(Value))
+        {
+            var encodedData = Uri.EscapeDataString($"{Env.BaseAddress}{Value}");
+            QrImageUrl = $"https://api.qrserver.com/v1/create-qr-code/?data={encodedData}&size={Width}x{Height}";
+        }
     }
-
 }
