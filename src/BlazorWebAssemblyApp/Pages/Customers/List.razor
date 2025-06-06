@@ -18,7 +18,7 @@
 
 <CascadingValue Value="@Theme">
 
-    <CascadingValue Value="@ApplicationContext">
+
 
             <Loader IsLoading=@isLoading>
                 <Table Items="@customers">
@@ -39,12 +39,11 @@
 
             </Loader>
         </CascadingValue>
-    </CascadingValue>
 
 @code {
     private string Theme => isChecked ? "dark" : "light";
 
-    private ApplicationContext ApplicationContext = new ApplicationContext { Count = 10, Mode = false };
+    
 
     private bool isChecked = true;
 
