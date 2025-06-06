@@ -1,7 +1,9 @@
 # 📊 Zadanie: Komponent oceniania produktu
 
 ## 🧩 Cel:
+
 Twoim zadaniem jest stworzenie komponentu Blazora, który umożliwia użytkownikowi ocenę produktu w skali od `1` do `5` za pomocą interaktywnych gwiazdek. Komponent ma być niezależny i gotowy do ponownego użycia w różnych miejscach aplikacji.
+
 ---
 
 ## ✅ Wymagania funkcjonalne:
