@@ -9,18 +9,31 @@
 
         <DataAnnotationsValidator />
 
+        <ValidationSummary />
 
-        <label for="name">Name: </label>
-        <InputText id="name" @bind-Value=customer.Name />
+        <div class="mb-3">
+            <label for="name" class="form-label">Name: </label>
+            <InputText id="name" class="form-control" @bind-Value=customer.Name />
+            <ValidationMessage For="() => customer.Name" />
+        </div>
 
-        <label for="email">Email: </label>
-        <InputText id="email" @bind-Value=customer.Email />
+        <div class="mb-3">
+            <label for="email" class="form-label">Email: </label>
+            <InputText id="email" class="form-control" @bind-Value=customer.Email />
+            <ValidationMessage For="() => customer.Email" />
+        </div>
 
-        <label for="password">Password: </label>
-        <InputText id="password" @bind-Value=customer.HashedPassword />
+        <div class="mb-3">
+            <label for="password" class="form-label">Password: </label>
+            <InputText id="password" class="form-control"  @bind-Value=customer.HashedPassword />
+            <ValidationMessage For="() => customer.HashedPassword" />
+        </div>
 
-        <label for="confirmPassword">Confirm Password: </label>
-        <InputText id="confirmPassword" @bind-Value=customer.ConfirmedPassword />
+        <div class="mb-3">
+            <label for="confirmPassword" class="form-label">Confirm Password: </label>
+            <InputText id="confirmPassword" class="form-control" @bind-Value=customer.ConfirmedPassword />
+            <ValidationMessage For="() => customer.ConfirmedPassword" />
+        </div>
 
         <button type="submit" class="btn btn-primary">Save</button>
 
@@ -46,7 +59,7 @@
     {
         Console.WriteLine($"Handled Save {customer.Name}");
 
-        // TODO: Dodaj 
+        // TODO: Dodaj
         // await Api.Update(customer);
     }
 }
