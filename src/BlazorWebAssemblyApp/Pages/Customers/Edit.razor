@@ -1,0 +1,52 @@
+﻿@page "/customers/edit/{id:int}"
+@inject ICustomerService Api
+
+<h3>Edit</h3>
+
+<Loader IsLoading=@isLoading>
+
+    <EditForm Model="@customer" OnValidSubmit="@HandleSave">
+
+        <DataAnnotationsValidator />
+
+
+        <label for="name">Name: </label>
+        <InputText id="name" @bind-Value=customer.Name />
+
+        <label for="email">Email: </label>
+        <InputText id="email" @bind-Value=customer.Email />
+
+        <label for="password">Password: </label>
+        <InputText id="password" @bind-Value=customer.HashedPassword />
+
+        <label for="confirmPassword">Confirm Password: </label>
+        <InputText id="confirmPassword" @bind-Value=customer.ConfirmedPassword />
+
+        <button type="submit" class="btn btn-primary">Save</button>
+
+    </EditForm>
+
+</Loader>
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private Customer? customer;
+
+    private bool isLoading => customer is null;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        customer = await Api.Get(Id);
+    }
+
+    private async Task HandleSave()
+    {
+        Console.WriteLine($"Handled Save {customer.Name}");
+
+        // TODO: Dodaj 
+        // await Api.Update(customer);
+    }
+}
