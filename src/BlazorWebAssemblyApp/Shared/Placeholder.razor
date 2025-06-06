@@ -1,8 +1,20 @@
-﻿
+﻿@using BlazorWebAssemblyApp.Models
+
 
 <div class="spinner-border text-@Theme" role="status">
-    <span class="visually-hidden">@Message</span>
+    <span class="visually-hidden">@Message</span>   
 </div>
+
+
+@if (@ApplicationContext.Mode)
+{
+    @ApplicationContext.Count
+
+
+    <div class="alert alert-danger" role="alert">
+        This is a danger alert—check it out!
+    </div>
+}
 
 @code {
 
@@ -11,4 +23,7 @@
 
     [CascadingParameter]
     public string Theme { get; set; } = "light";
+
+    [CascadingParameter]
+    public ApplicationContext ApplicationContext { get; set; }
 }

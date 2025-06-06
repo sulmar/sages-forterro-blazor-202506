@@ -1,9 +1,10 @@
 ﻿@page "/customers"
+@using BlazorWebAssemblyApp.Models
 
 <h3>Customer List</h3>
 
 <div class="form-check form-switch">
-    <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" @bind=isChecked>    
+    <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" @bind=isChecked>
 </div>
 
 <div>
@@ -17,29 +18,33 @@
 
 <CascadingValue Value="@Theme">
 
-    <Loader IsLoading=@isLoading>
-        <Table Items="@customers">
-            <HeaderTemplate>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Actions</th>
-            </HeaderTemplate>
+    <CascadingValue Value="@ApplicationContext">
 
-            <RowTemplate Context="customer">
-                <td>@customer.Id </td>
-                <td>@customer.Name</td>
-                <td>@customer.Email</td>
-                <td><a class="btn btn-primary" href="/customers/view/@customer.Id">View</a></td>
-            </RowTemplate>
-        </Table>
+            <Loader IsLoading=@isLoading>
+                <Table Items="@customers">
+                    <HeaderTemplate>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </HeaderTemplate>
 
-    </Loader>
+                    <RowTemplate Context="customer">
+                        <td>@customer.Id </td>
+                        <td>@customer.Name</td>
+                        <td>@customer.Email</td>
+                        <td><a class="btn btn-primary" href="/customers/view/@customer.Id">View</a></td>
+                    </RowTemplate>
+                </Table>
 
-</CascadingValue>
+            </Loader>
+        </CascadingValue>
+    </CascadingValue>
 
 @code {
     private string Theme => isChecked ? "dark" : "light";
+
+    private ApplicationContext ApplicationContext = new ApplicationContext { Count = 10, Mode = false };
 
     private bool isChecked = true;
 
