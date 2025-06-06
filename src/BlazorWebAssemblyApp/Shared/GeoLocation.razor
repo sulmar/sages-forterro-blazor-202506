@@ -1,0 +1,34 @@
+﻿@inject IJSRuntime JS
+
+
+
+<button class="btn btn-danger" @onclick=@GetGeolocation>Pobierz geolokację</button>
+
+@location
+
+@code {
+
+
+    private DotNetObjectReference<GeoLocation?> _dotnetRef;
+
+    protected override void OnInitialized()
+    {
+        _dotnetRef = DotNetObjectReference.Create(this);
+    }
+
+
+    private string location = "Brak danych";
+
+    private async Task GetGeolocation()
+    {
+        await JS.InvokeVoidAsync("getLocation", _dotnetRef);
+    }
+
+    [JSInvokable]
+    public void OnLocationReceived(double latitue, double longitude)
+    {
+        location = $"lat: {latitue} lng: {longitude}";
+
+        StateHasChanged();
+    }
+}
