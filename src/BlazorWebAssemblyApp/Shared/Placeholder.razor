@@ -11,8 +11,8 @@
     @ApplicationContext.Count
 
 
-    <div class="alert alert-danger" role="alert">
-        This is a danger alert—check it out!
+    <div class="alert alert-@Level" role="alert">
+        This is a @Level alert—check it out!
     </div>
 }
 
@@ -21,8 +21,11 @@
     [Parameter]
     public string Message { get; set; } = "Loading items...";
 
-    [CascadingParameter]
+    [CascadingParameter(Name = "thm")]
     public string Theme { get; set; } = "light";
+
+    [CascadingParameter(Name = "lev")]
+    public string Level { get; set; }
 
     [CascadingParameter]
     public ApplicationContext ApplicationContext { get; set; }

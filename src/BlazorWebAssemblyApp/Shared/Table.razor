@@ -34,7 +34,7 @@
     [Parameter]
     public RenderFragment<TItem> RowTemplate { get; set; }
 
-    [CascadingParameter]
+    [CascadingParameter(Name = "thm")]
     public string Theme { get; set; } = "light";
 
 }

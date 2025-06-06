@@ -15,35 +15,38 @@
     <button class="btn btn-primary">Search</button>
 </div>
 
+<CascadingValue Value="@Level" Name="lev">
+    <CascadingValue Value="@Theme" Name="thm">
 
-<CascadingValue Value="@Theme">
 
+        <Loader IsLoading=@isLoading>
+            <Table Items="@customers">
+                <HeaderTemplate>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </HeaderTemplate>
 
+                <RowTemplate Context="customer">
+                    <td>@customer.Id </td>
+                    <td>@customer.Name</td>
+                    <td>@customer.Email</td>
+                    <td><a class="btn btn-primary" href="/customers/view/@customer.Id">View</a></td>
+                </RowTemplate>
+            </Table>
 
-            <Loader IsLoading=@isLoading>
-                <Table Items="@customers">
-                    <HeaderTemplate>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Actions</th>
-                    </HeaderTemplate>
+        </Loader>
+    </CascadingValue>
 
-                    <RowTemplate Context="customer">
-                        <td>@customer.Id </td>
-                        <td>@customer.Name</td>
-                        <td>@customer.Email</td>
-                        <td><a class="btn btn-primary" href="/customers/view/@customer.Id">View</a></td>
-                    </RowTemplate>
-                </Table>
-
-            </Loader>
-        </CascadingValue>
+</CascadingValue>
 
 @code {
     private string Theme => isChecked ? "dark" : "light";
 
-    
+    private string Level = "info";
+
+
 
     private bool isChecked = true;
 
