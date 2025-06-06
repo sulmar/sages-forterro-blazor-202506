@@ -1,4 +1,5 @@
 using BlazorWebAssemblyApp;
+using BlazorWebAssemblyApp.Models;
 using BlazorWebAssemblyApp.Services;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -14,5 +15,9 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 // Typed HttpClient (Typowany klient http)
 builder.Services.AddHttpClient<ICustomerService, ApiCustomerService>(http => http.BaseAddress = new Uri("https://localhost:7162"));
 builder.Services.AddHttpClient<IProductService, ApiProductService>(http => http.BaseAddress = new Uri("https://localhost:7162"));
+
+
+
+builder.Services.AddCascadingValue<ApplicationContext>(sp => new ApplicationContext { Count = 10, Mode = true });
 
 await builder.Build().RunAsync();
