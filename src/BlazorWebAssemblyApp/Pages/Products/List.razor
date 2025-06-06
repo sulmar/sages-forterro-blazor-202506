@@ -3,6 +3,14 @@
 
 <h3>Product List</h3>
 
+<div>
+    <label for="searchInputText">Search Text:</label>
+
+    <DebounceSearchInput ValueChanged=@OnSearch />
+
+    <button class="btn btn-primary">Search</button>
+</div>
+
 <Loader IsLoading=@isLoading>
 
     <Content>
@@ -39,6 +47,15 @@
         products = await Api.GetAll();
     }
 
+    private async Task OnSearch(string value)
+    {
+        // Wywołaj API
+        Console.WriteLine($"Searching products... {value}");
 
+        await Task.Delay(TimeSpan.FromSeconds(3));
+
+        Console.WriteLine($"Found.");
+
+    }
 
 }

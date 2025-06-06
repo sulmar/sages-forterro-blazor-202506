@@ -1,0 +1,50 @@
+﻿
+<input type="text" id="searchInputText" @ref=@searchInputTextRef @bind=@searchText @bind:event="oninput" @bind:after=@SearchHandler />
+
+@code {
+
+    private ElementReference searchInputTextRef;
+
+    private string searchText = string.Empty;
+
+    [Parameter]
+    public int DebounceMiliseconds { get; set; } = 500;
+
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
+
+    private CancellationTokenSource cts;
+
+
+    private async Task SearchHandler()
+    {
+        cts?.Cancel();
+
+        cts = new CancellationTokenSource();
+
+        var token = cts.Token;
+
+        try
+        {
+            await Task.Delay(DebounceMiliseconds, token);
+
+            await SearchAsync(token);
+        }
+
+        catch (TaskCanceledException) { }
+    }
+
+    private async Task SearchAsync(CancellationToken token)
+    {
+        if (!token.IsCancellationRequested)
+        {            
+            await ValueChanged.InvokeAsync(searchText); // delegujemy wyszukiwanie
+        }
+
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await searchInputTextRef.FocusAsync();
+    }
+}
