@@ -1,8 +1,14 @@
 ﻿
-<em>@Message</em>
+
+<div class="spinner-border text-@Theme" role="status">
+    <span class="visually-hidden">@Message</span>
+</div>
 
 @code {
 
     [Parameter]
     public string Message { get; set; } = "Loading items...";
+
+    [Parameter]
+    public string Theme { get; set; } = "light";
 }

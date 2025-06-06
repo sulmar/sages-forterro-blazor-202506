@@ -1,6 +1,6 @@
 ﻿@typeparam TItem
 
-<table class="table table-striped">
+<table class="table table-striped table-@Theme">
     <thead>
         <tr>
            @HeaderTemplate
@@ -33,5 +33,8 @@
 
     [Parameter]
     public RenderFragment<TItem> RowTemplate { get; set; }
+
+    [Parameter]
+    public string Theme { get; set; } = "light";
 
 }
