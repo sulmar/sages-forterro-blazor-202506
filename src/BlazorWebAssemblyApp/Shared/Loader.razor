@@ -2,7 +2,7 @@
 
 @if (IsLoading)
 {
-    <Placeholder Theme="@Theme" />
+    <Placeholder />
 }
 else
 {
@@ -16,8 +16,5 @@ else
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
-
-    [Parameter]
-    public string Theme { get; set; }
 
 }

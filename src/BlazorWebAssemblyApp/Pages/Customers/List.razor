@@ -6,30 +6,36 @@
     <label for="searchInputText">Search Text:</label>
 
     <DebounceSearchInput ValueChanged=@OnSearch DebounceMiliseconds="250" />
-   
+
     <button class="btn btn-primary">Search</button>
 </div>
 
-<Loader IsLoading=@isLoading Theme="dark">
-    <Table Items="@customers" Theme="dark">
-        <HeaderTemplate>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Actions</th>
-        </HeaderTemplate>
 
-        <RowTemplate Context="customer">
-            <td>@customer.Id </td>
-            <td>@customer.Name</td>
-            <td>@customer.Email</td>
-            <td><a class="btn btn-primary" href="/customers/view/@customer.Id">View</a></td>
-        </RowTemplate>
-    </Table>
+<CascadingValue Value="@Theme">
 
-</Loader>
+    <Loader IsLoading=@isLoading>
+        <Table Items="@customers">
+            <HeaderTemplate>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </HeaderTemplate>
+
+            <RowTemplate Context="customer">
+                <td>@customer.Id </td>
+                <td>@customer.Name</td>
+                <td>@customer.Email</td>
+                <td><a class="btn btn-primary" href="/customers/view/@customer.Id">View</a></td>
+            </RowTemplate>
+        </Table>
+
+    </Loader>
+
+</CascadingValue>
 
 @code {
+    private string Theme = "light";
 
     private async Task OnSearch(string value)
     {
