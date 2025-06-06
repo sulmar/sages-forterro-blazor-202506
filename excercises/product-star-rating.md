@@ -20,6 +20,10 @@ Twoim zadaniem jest stworzenie komponentu Blazora, który umożliwia użytkownik
 --- 
 
 ## 💡 Wskazówki 
+- Dodak bibliotekę `bootstrap-icons` w `index.html`
+```html
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+```
 - Wypełniona gwiazdka: `<i class="bi bi-star-fill text-warning"></i>`
 - Pusta gwiazdka: `<i class="bi bi-star text-muted"></i>`
 - Styl CSS: możesz zastosować klasę `cursor: pointer` do klikanych elementów
