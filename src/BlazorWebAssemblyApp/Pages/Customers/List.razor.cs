@@ -1,11 +1,10 @@
 ﻿using BlazorWebAssemblyApp.Services;
 using Domain.Models;
-using Microsoft.JSInterop;
 
 namespace BlazorWebAssemblyApp.Pages.Customers;
 
 
-public partial class List(ICustomerService Api) // Primary Constructor
+public partial class List(ICustomerService Api, IStorageService storageService) // Primary Constructor
 {
     private string message = "Hello Customers!";
 
@@ -20,7 +19,7 @@ public partial class List(ICustomerService Api) // Primary Constructor
     {        
         customers = await Api.GetAll();
 
-        var theme = await JS.InvokeAsync<string>("localStorage.getItem", "theme");
+        var theme = await storageService.Get("theme");
 
         isChecked = theme == "dark";
     }

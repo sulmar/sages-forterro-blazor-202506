@@ -1,5 +1,5 @@
 ﻿@page "/customers"
-@inject IJSRuntime JS
+@inject IStorageService Storage
 
 <h3>Customer List</h3>
 
@@ -66,7 +66,7 @@
     {
         Console.WriteLine("ThemeChanged");
 
-        await JS.InvokeVoidAsync("localStorage.setItem", "theme", Theme);
+        await Storage.Set("theme", Theme);
     }
 
 
