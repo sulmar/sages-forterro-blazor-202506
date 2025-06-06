@@ -1,6 +1,7 @@
 ﻿@page "/customers/edit/{id:int}"
 @inject ICustomerService Api
 @using Blazored.FluentValidation
+@implements IDisposable
 
 <h3>Edit</h3>
 
@@ -40,7 +41,9 @@
             <ValidationMessage For="() => customer.ConfirmedPassword" />
         </div>
 
-        <button type="submit" class="btn btn-primary">Save</button>
+        
+        <button type="submit" class="btn btn-primary" disabled=@isSaving>Save</button>
+        
 
     </EditForm>
 
@@ -55,16 +58,31 @@
 
     private bool isLoading => customer is null;
 
+    private bool isSaving = false;
+
     protected override async Task OnParametersSetAsync()
     {
         customer = await Api.Get(Id);
     }
 
+    public void Dispose()
+    {
+        Console.WriteLine("Disposed!");
+    }
+
     private async Task HandleSave()
     {
+        isSaving = true;
+
         Console.WriteLine($"Handled Save {customer.Name}");
 
         // TODO: Dodaj
         // await Api.Update(customer);
+
+        await Task.Delay(TimeSpan.FromSeconds(5));
+
+        isSaving = false;
+
+        Console.WriteLine("Saved.");
     }
 }
