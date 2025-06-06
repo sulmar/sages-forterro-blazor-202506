@@ -1,10 +1,10 @@
 ﻿@page "/customers"
-@using BlazorWebAssemblyApp.Models
+@inject IJSRuntime JS
 
 <h3>Customer List</h3>
 
 <div class="form-check form-switch">
-    <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" @bind=isChecked>
+    <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" @bind=isChecked @bind:after=@ThemeChanged>
 </div>
 
 <div>
@@ -60,6 +60,13 @@
         await Task.Delay(TimeSpan.FromSeconds(3));
 
         Console.WriteLine($"Found.");
+    }
+
+    private async Task ThemeChanged()
+    {
+        Console.WriteLine("ThemeChanged");
+
+        await JS.InvokeVoidAsync("localStorage.setItem", "theme", Theme);
     }
 
 
