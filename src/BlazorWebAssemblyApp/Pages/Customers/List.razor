@@ -15,7 +15,8 @@
     <button class="btn btn-primary">Search</button>
 </div>
 
-<CascadingValue Value="@Level" Name="lev">
+<CascadingValue Value="@Level" Name="lvl">
+
     <CascadingValue Value="@Theme" Name="thm">
 
 
@@ -37,6 +38,7 @@
             </Table>
 
         </Loader>
+
     </CascadingValue>
 
 </CascadingValue>
@@ -45,7 +47,6 @@
     private string Theme => isChecked ? "dark" : "light";
 
     private string Level = "info";
-
 
 
     private bool isChecked = true;

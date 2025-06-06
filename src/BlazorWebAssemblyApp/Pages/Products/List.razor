@@ -11,9 +11,10 @@
     <button class="btn btn-primary">Search</button>
 </div>
 
-<Loader IsLoading=@isLoading>
+<CascadingValue Value=@Level Name="lvl">
 
-    <Content>
+    <Loader IsLoading=@isLoading>
+
         <Table Items="@products">
             <HeaderTemplate>
                 <th>Id</th>
@@ -32,11 +33,13 @@
             </RowTemplate>
         </Table>
 
-    </Content>
 
-</Loader>
+    </Loader>
+
+</CascadingValue>
 
 @code {
+    private string Level = "b";
 
     private List<Product>? products;
 

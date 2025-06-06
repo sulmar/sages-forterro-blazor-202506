@@ -19,5 +19,6 @@ builder.Services.AddHttpClient<IProductService, ApiProductService>(http => http.
 
 
 builder.Services.AddCascadingValue<ApplicationContext>(sp => new ApplicationContext { Count = 10, Mode = true });
+builder.Services.AddCascadingValue<string>("lvl", sp => "a");
 
 await builder.Build().RunAsync();
