@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject IJSRuntime JS
 
 <PageTitle>Home</PageTitle>
 
@@ -8,3 +9,40 @@ Welcome to your new app.
 
 
 <i class="bi bi-star-fill"></i>
+
+
+<button class="btn btn-primary" @onclick=@LogToConsole>Log To Console</button>
+
+
+<button class="btn btn-secondary" @onclick=@ShowConfirm>Show Confirm</button>
+
+@confirmResult
+
+
+<button class="btn btn-secondary" @onclick=@CallHello>Call Hello</button>
+
+
+@code {
+
+
+    private async Task LogToConsole()
+    {
+        await JS.InvokeVoidAsync("console.log", "Hello World!");
+    }
+
+
+    private bool confirmResult;
+
+    private async Task ShowConfirm()
+    {
+        confirmResult = await JS.InvokeAsync<bool>("confirm", "Are you sure?");
+    }
+
+    private async Task CallHello()
+    {
+        await JS.InvokeVoidAsync("hello");
+    }
+
+
+
+}
