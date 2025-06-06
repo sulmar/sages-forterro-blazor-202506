@@ -2,6 +2,10 @@
 
 <h3>Customer List</h3>
 
+<div class="form-check form-switch">
+    <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" @bind=isChecked>    
+</div>
+
 <div>
     <label for="searchInputText">Search Text:</label>
 
@@ -35,7 +39,9 @@
 </CascadingValue>
 
 @code {
-    private string Theme = "light";
+    private string Theme => isChecked ? "dark" : "light";
+
+    private bool isChecked = true;
 
     private async Task OnSearch(string value)
     {
